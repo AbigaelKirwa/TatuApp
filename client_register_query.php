@@ -26,7 +26,7 @@ $password= $_POST["pass"];
 $confirm_password= $_POST["cpass"];
 $email= $_POST["mail"];
 
-$sql = "select * from users where first_name = '$first_name'";
+$sql = "select * from users where email = '$email'";
 $result = mysqli_query($conn,$sql);
 $num = mysqli_num_rows($result);
 
@@ -49,8 +49,8 @@ else{
 }
 }
 if ($num > 0){
-    header("refresh:0; url= register.php");
-    echo'<script>alert("Username already taken")</script>';
+    echo'<script>alert("Email already taken")</script>';
+    header("refresh:0; url= signup.php");
 }
 
 }
