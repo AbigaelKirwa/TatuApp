@@ -33,6 +33,7 @@ body
     line-height: 10px;
     color: #FFFFFF;
     text-align: center;
+
 }
 form
 {
@@ -90,3 +91,26 @@ p a
 {
     text-decoration: underline;
 }
+/* @media only screen and (max-width: 1000px) {
+    body{
+        background: none;
+    } 
+
+    .container{
+        width: 500px;
+        height: auto;
+        margin-left: 25%;
+        margin-top: 50px;
+        padding-bottom: 5%;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .container{
+        margin-left: 20%;
+    }
+}
+@media only screen and (max-width: 710px) {
+    .container{
+        margin-left: 15%;
+    }
+} */

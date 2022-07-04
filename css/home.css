@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+*, *:before, *:after 
+{ box-sizing: border-box; }
+html { font-size: 18px; }
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter';
+}
+body
+{
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+label .menu {
+    position: absolute;
+    right: -100px;
+    top: -100px;
+    z-index: 100;
+    width: 200px;
+    height: 200px;
+    background: #FFF;
+    border-radius: 50% 50% 50% 50%;
+    -webkit-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    box-shadow: 0 0 0 0 #FFF, 0 0 0 0 #FFF;
+    cursor: pointer;
+    
+  }
+    
+  label .hamburger {
+    position: absolute;
+    top: 135px;
+    left: 50px;
+    width: 30px;
+    height: 2px;
+    background: #18ABAB;
+    display: block;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+  }
+    
+label .hamburger:after, label .hamburger:before {
+    -webkit-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #69d2e7;
+}
+    
+label .hamburger:before { top: -10px; }
+
+label .hamburger:after { bottom: -10px; }
+
+label input { display: none; }
+  
+label input:checked + .menu {
+    box-shadow: 0 0 0 100vw #FFF, 0 0 0 100vh #FFF;
+    border-radius: 0;
+    
+}
+  
+label input:checked + .menu .hamburger {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    
+}
+  
+label input:checked + .menu .hamburger:after {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    bottom: 0;
+    
+}
+  
+label input:checked + .menu .hamburger:before {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  top: 0;
+    
+}
+    
+label input:checked + .menu + ul { opacity: 1; }
+
+label ul {
+    z-index: 200;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    -webkit-transition: .25s 0s ease-in-out;
+    transition: .25s 0s ease-in-out;
+    list-style-type: none;
+}
+
+label a {
+    margin-bottom: 1em;
+    display: block;
+    color: #E56C15;
+    text-decoration: none;    
+}
+h1
+{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 10px;
+    color: #E56C15;
+}
+.heading
+{
+    width: 100%;
+    text-align: center;
+}
+.row
+{
+    width: 100%;
+    padding-left: 27%;
+    padding-top: 5%;
+}
+.col-4
+{
+    text-align: center;
+}
+select.form-select
+{
+    background-color: rgb(24, 171, 171,0.18);
+    border-radius: 30px;
+}
+option
+{
+    background-color: #FFF;
+}
+button.available
+{
+    width: 280px;
+    height: 50px;
+    margin-top: 25px;
+    border: 5px solid #E56C15;
+    left: 750px;
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 70px;
+}
+.price
+{
+    width: 280px;
+    height: 50px;
+    background-color: #065757;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 70px;
+    padding-top: 13px;
+    color: #FFF;
+}
+.heading-2
+{
+    text-align: center;
+    margin-top: 70px;
+}
+#row-for-buses
+{
+    margin-left: -70px;
+}
+.col img
+{
+    width: 100px;
+}
+.bus-description
+{
+    margin-left: 15px;
+}
+footer
+{
+    width: 100%;
+    height: 50vh;
+    background-color: #E56C15; 
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+.footer-copyright img
+{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(80,73,80,1);
+    width: 250px;
+    padding-top: 25%;
+    padding-left: 50%;
+}
+.footer-links
+{
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    height: 30vh;
+    justify-content: space-between;
+    padding-left: 40%;
+    padding-top: 7%;
+}
+.footer-links li b
+{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+}
+.footer-links li a
+{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+}
+.footer-links ul li
+{
+    list-style: none;
+}
+.footer-links ul li a
+{
+    text-decoration: none;
+    cursor: pointer;
+}
