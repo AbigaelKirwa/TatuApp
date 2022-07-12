@@ -12,7 +12,7 @@
             <div class="heading">
                 <br><br><h1>Login</h1><br><br>
             </div>
-            <form method="post" action="client_log_in_query.php">
+            <form method="post" action="queries/client_log_in_query.php">
             <?php if (isset($_GET['error'])) { ?>
 
                 <p class="error"><?php echo $_GET['error']; ?></p>

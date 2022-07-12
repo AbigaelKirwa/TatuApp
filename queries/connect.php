@@ -8,6 +8,6 @@ if($conn -> connect_error)
     die("Not connected".$conn -> connect_error);
 }
 //create database query
-$sql= "CREATE DATABASE MATATUAPP";
+$sql= "CREATE DATABASE matatudb";
 $conn -> query($sql)
 ?>

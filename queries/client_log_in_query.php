@@ -20,16 +20,17 @@
       {
          if (is_array($row))
          {
+            $_SESSION["username"]= $row['first_name'];
             $_SESSION["email"]= $row['email'];
             $_SESSION["password"]= $row['password'];
             $_SESSION["client_id"]= $row['user_id'];
-            header("refresh:0; url= landingpage.php");
+            header("refresh:0; url= ../home.php");
             echo'<script>alert("Welcome back")</script>';
          }
       }
       else 
       {
-         header("refresh:0; url= login.php");
+         header("refresh:0; url= ../login.php");
          echo'<script>alert("Incorrect credentials")</script>';
       }
    }

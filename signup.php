@@ -13,7 +13,7 @@
         <div class="heading">
             <h1>Sign Up</h1>
         </div>
-        <form method="post" action="client_register_query.php">
+        <form method="post" action="queries/client_register_query.php">
             <div class="input-group">
                 <label for="first_name">First Name</label>
                 <input required class="line" name="fname" type="text">

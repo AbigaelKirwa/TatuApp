@@ -1,3 +1,10 @@
+<?php
+session_start();
+include_once ("queries/connect.php");
+include_once ("queries/fetch_starting.php");
+include_once ("queries/fetch_destination.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,26 +28,38 @@
         <li> <a href="landingpage.php">Home</a> </li>
         <li> <a href="#">About</a> </li>
         <li> <a href="#">Contact</a> </li>
+        <li> <a href="landingpage.php">Logout</a></li>
         </ul>
     </label>
+    <?php
+            echo "<div class='html_session'><h1>Welcome, " .$_SESSION['username'] ." 😁</h1></div>";
+        ?>
     <div class="heading">
         <h1>Booking Details</h1>  
     </div>
     <div class="row">
         <div class="col-4">
         <label for="start">start point</label>
-        <select class="form-select" aria-label="Default select example">
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+        <select class="form-select" aria-label="Default select example" name="stage_name">
+            <?php 
+                foreach ($options as $option) {
+                    ?>
+                    <option><?php echo $option['stage_name']; ?></option>
+                    <?php 
+                }
+            ?>
         </select>
         </div>
         <div class="col-4">
         <label for="destination">destination point</label>
-        <select class="form-select" aria-label="Default select example">
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+        <select class="form-select" aria-label="Default select example" name="stage_name">
+            <?php 
+                foreach ($options as $option) {
+                    ?>
+                    <option><?php echo $option['stage_name']; ?></option>
+                    <?php 
+                }
+            ?>
         </select>
         </div>
     </div>

@@ -108,6 +108,11 @@ label a {
     color: #E56C15;
     text-decoration: none;    
 }
+.html_session h1
+{
+    color: black;
+    font-size: 35px;
+}
 h1
 {
     font-style: normal;
