@@ -81,8 +81,8 @@ include_once ("queries/admin_count.php");
                                    <td><?php echo $row['dropoff_stage_name']; ?></td>
                                    <td><?php echo $row['fare_amount']; ?></td>
                                    <td>
-                                    <button type="button" class="btn btn-warning" id="editbtn">Update</button>
-                                    <button type="button" class="btn btn-danger"id ="deletebtn">Delete</button>
+                                        <button type="button" class="btn btn-warning" id="editbtn"><a name="update_fare" href="update_fare.php?id=<?php echo $row['fare_id']; ?>">Update</a></button>
+                                        <button type="button" class="btn btn-danger"id ="deletebtn"><a name="queries/delete_fare" href="queries/delete_fare.php?id=<?php echo $row['fare_id']; ?>">Delete</a></button>
                                     </td>
                                </tr>
                                <?php

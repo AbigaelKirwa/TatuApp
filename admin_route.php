@@ -75,8 +75,8 @@ include_once ("queries/admin_count.php");
                                    <td><?php echo $row['route_name']; ?></td>
                                    <td><?php echo $row['route_number']; ?></td>
                                    <td>
-                                    <button type="button" class="btn btn-warning" id="editbtn">Update</button>
-                                    <button type="button" class="btn btn-danger"id ="deletebtn">Delete</button>
+                                        <button type="button" class="btn btn-warning" id="editbtn"><a name="update_route" href="update_route.php?id=<?php echo $row['route_id']; ?>">Update</a></button>
+                                        <button type="button" class="btn btn-danger"id ="deletebtn"><a name="queries/delete_route" href="queries/delete_route.php?id=<?php echo $row['route_id']; ?>">Delete</a></button>
                                     </td>
                                </tr>
                                <?php
@@ -91,7 +91,7 @@ include_once ("queries/admin_count.php");
                 
                     }  
                 ?>
-            
+            <button type="button" class="btn btn-success" id ="insertbtn"><a name="insert_route" href="insert_route.php?id=<?php echo $row['id']; ?>">Insert Fare</a></button>
             </div>
                 <div class="admin-image">
                     <img src="images/admin.png" alt="">
