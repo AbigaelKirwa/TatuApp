@@ -46,11 +46,12 @@ include_once ("queries/admin_count.php");
                 <div class="item5"><p id="rcorners5">PAYMENT<br><?php echo $paymentrowcount; ?></p></div>
                 <div class="item6"><table id="rcorners6" class="table">
                     <tr>
-                    <th scope="col">Payment Id</th>
-                    <th scope="col">Payment method</th>
-                    <th scope="col">Payment amount</th>
-                    <th scope="col">User Id</th>
-                    <th scope="col">Bus Id</th>
+                    <th scope="col">Bus Id</th>   
+                    <th scope="col">Bus name</th>
+                    <th scope="col">Number plate</th>
+                    <th scope="col">Route Id</th>
+                    <th scope="col">Bus image</th>
+                    <th scope="col">Capacity</th>
                     <th scope="col">Changes To Values</th>
                     </tr>
                     <?php
@@ -63,7 +64,7 @@ include_once ("queries/admin_count.php");
                         $initial_page = ($page_number-1) * $limit; 
 
 
-                        $sql_select = "SELECT  * FROM `payment`";
+                        $sql_select = "SELECT  * FROM `bus`";
                         $results = $conn->query($sql_select);
                         $total_rows = mysqli_num_rows($results);
 
@@ -71,19 +72,20 @@ include_once ("queries/admin_count.php");
         
                         if($results -> num_rows > 0)
                         {
-                            $query = "SELECT *FROM `payment`LIMIT " . $initial_page . ',' . $limit;  
+                            $query = "SELECT *FROM `bus` LIMIT " . $initial_page . ',' . $limit;  
                             $result = mysqli_query($conn, $query);  
                             while($row = mysqli_fetch_array($result)){
                                 ?>
                                <tr>
-                                   <td><?php echo $row['payment_id']; ?></td>
-                                   <td><?php echo $row['payment_method']; ?></td>
-                                   <td><?php echo $row['payment_amount']; ?></td>
-                                   <td><?php echo $row['user_id']; ?></td>
-                                   <td><?php echo $row['bus_id']; ?></td>
+                               <td><?php echo $row['bus_id']; ?></td>
+                                   <td><?php echo $row['bus_name']; ?></td>
+                                   <td><?php echo $row['number_plate']; ?></td>
+                                   <td><?php echo $row['route_id']; ?></td>
+                                   <td><img src="<?php echo $row['bus_image']; ?>" style="margin-top:-20px;"></td>
+                                   <td><?php echo $row['capacity']; ?></td>
                                    <td>
-                                    <button type="button" class="btn btn-warning" id="editbtn">Update</button>
-                                    <button type="button" class="btn btn-danger"id ="deletebtn">Delete</button>
+                                        <button type="button" class="btn btn-warning" id="editbtn"><a name="update_bus" href="update_bus.php?id=<?php echo $row['bus_id']; ?>">Update</a></button>
+                                        <button type="button" class="btn btn-danger"id ="deletebtn"><a name="queries/delete_bus" href="queries/delete_bus.php?id=<?php echo $row['route_id']; ?>">Delete</a></button>
                                     </td>
                                </tr>
                                <?php
@@ -94,11 +96,11 @@ include_once ("queries/admin_count.php");
                 <?php
                     for($page_number = 1; $page_number<= $total_pages; $page_number++) {  
 
-                        echo '<a class="pagination" href = "admin_payment.php?page=' . $page_number . '">' . $page_number . ' </a>';  
+                        echo '<a class="pagination" href = "admin_bus.php?page=' . $page_number . '">' . $page_number . ' </a>';  
                 
                     }  
                 ?>
-            
+            <button type="button" class="btn btn-success" id ="insertbtn"><a name="insert_route" href="insert_bus.php?id=<?php echo $row['id']; ?>">Insert Bus</a></button>
             </div>
                 <div class="admin-image">
                     <img src="images/admin.png" alt="">

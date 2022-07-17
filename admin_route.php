@@ -35,6 +35,9 @@ include_once ("queries/admin_count.php");
                 <a href="admin_booking.php">
                     <span class="glyphicon glyphicon-book" style="font-size:30px; color:white;"></span>
                 </a><br><br>
+                <a href="admin_bus.php">
+                    <span class="glyphicon glyphicon-bold" style="font-size:30px; color:white;"></span>
+                </a><br><br>
                 </p>
                 </div>
                 <div class="item2"><p id="rcorners2"></p></div>

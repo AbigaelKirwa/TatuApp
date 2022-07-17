@@ -1,14 +1,13 @@
 <?php
    include("connect.php");
-   session_start();
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
       
-      $email = mysqli_real_escape_string($conn,$_POST['pmail']);
-      $password = mysqli_real_escape_string($conn,$_POST['ppass']); 
+      $email = mysqli_real_escape_string($conn,$_POST['email']);
+      $password = mysqli_real_escape_string($conn,$_POST['pass']); 
       
-      $sql = "SELECT * FROM users WHERE email = '$email' and password = '$password'";
+      $sql = "SELECT * FROM users WHERE email = '$email' AND `password` = '$password' AND `role` ='admin' ";
       $result = mysqli_query($conn,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
    
@@ -20,17 +19,15 @@
       {
          if (is_array($row))
          {
-            $_SESSION["username"]= $row['first_name'];
-            $_SESSION["password"]= $row['password'];
-            $_SESSION["client_id"]= $row['user_id'];
-            header("refresh:0; url= ../home.php");
+            $_SESSION["email"]= $row['email'];
+            header("refresh:0; url= ../admin.php");
             echo'<script>alert("Welcome back")</script>';
          }
       }
       else 
       {
-         header("refresh:0; url= ../login.php");
          echo'<script>alert("Incorrect credentials")</script>';
+         header("location: ../admin_login.php");
       }
    }
 ?>

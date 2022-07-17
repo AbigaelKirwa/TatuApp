@@ -3,6 +3,11 @@ session_start();
 include_once ("queries/connect.php");
 include_once ("queries/fetch_starting.php");
 include_once ("queries/fetch_destination.php");
+if (!isset($_SESSION['username']))
+{
+    echo'<script>alert("Log in first")</script>';
+    header("location: login.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,11 +33,11 @@ include_once ("queries/fetch_destination.php");
         <li> <a href="landingpage.php">Home</a> </li>
         <li> <a href="#">About</a> </li>
         <li> <a href="#">Contact</a> </li>
-        <li> <a href="landingpage.php">Logout</a></li>
+        <li> <a href="logout.php">Logout</a></li>
         </ul>
     </label>
-    <?php
-            echo "<div class='html_session'><h1>Welcome, " .$_SESSION['username'] ." 😁</h1></div>";
+        <?php
+             echo "<div class='html_session'><h1>Welcome, " .$_SESSION['username'] ." 😁</h1></div>";
         ?>
     <div class="heading">
         <h1>Booking Details</h1>  

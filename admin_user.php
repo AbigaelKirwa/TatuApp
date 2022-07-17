@@ -26,14 +26,17 @@ include_once ("queries/admin_count.php");
                 <a href="admin_payment.php">
                     <span class="glyphicon glyphicon-credit-card" style="font-size:30px; color:white;"></span>
                 </a><br><br>
-                <a href="admin_route.php">
-                    <span class="glyphicon glyphicon-circle-arrow-right" style="font-size:30px; color:white;"></span>
-                </a><br><br>
                 <a href="admin_fare.php">
                     <span class="glyphicon glyphicon-usd" style="font-size:30px; color:white;"></span>
                 </a><br><br>
+                <a href="admin_route.php">
+                    <span class="glyphicon glyphicon-circle-arrow-right" style="font-size:30px; color:white;"></span>
+                </a><br><br>
                 <a href="admin_booking.php">
                     <span class="glyphicon glyphicon-book" style="font-size:30px; color:white;"></span>
+                </a><br><br>
+                <a href="admin_bus.php">
+                    <span class="glyphicon glyphicon-bold" style="font-size:30px; color:white;"></span>
                 </a><br><br>
                 </p>
                 </div>
