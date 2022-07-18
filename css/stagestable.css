@@ -1,0 +1,54 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    margin-top: 80px;
+}
+h1
+{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 70px;
+    line-height: 10px;
+    color: #E56C15;
+    margin-bottom: 50px;
+}
+.heading
+{
+    width: 100%;
+    text-align: center;
+}
+.row
+{
+    width: 100%;
+    padding-left: 27%;
+    padding-top: 5%;
+}
+.col-4
+{
+    text-align: center;
+}
+select.form-select
+{
+    background-color: rgb(24, 171, 171,0.18);
+    border-radius: 30px;
+}
+option
+{
+    background-color: #FFF;
+}
+button.available
+{
+    width: 280px;
+    height: 50px;
+    margin-top: 25px;
+    margin-left: 130px;
+    border: 5px solid #E56C15;
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 70px;
+}

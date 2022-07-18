@@ -102,9 +102,9 @@ label ul {
     list-style-type: none;
 }
 
-label a {
+ a {
     margin-bottom: 1em;
-    display: block;
+ label   display: block;
     color: #E56C15;
     text-decoration: none;    
 }

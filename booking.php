@@ -1,3 +1,14 @@
+<?php
+session_start();
+include_once ("queries/connect.php");
+include_once ("queries/fetch_starting.php");
+include_once ("queries/fetch_destination.php");
+if (!isset($_SESSION['username']))
+{
+    echo'<script>alert("Log in first")</script>';
+    header("location: login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -27,12 +38,15 @@
                             <li> <a href="#">Home</a> </li>
                             <li> <a href="#">About</a> </li>
                             <li> <a href="#">Contact</a> </li>
+                            <li> <a href="logout.php">Logout</a> </li>
                             </ul>
                         </label>
                     </li>
                 </ul>
             </nav>
-
+            <?php
+                echo "<div class='html_session'><h1>Welcome, " .$_SESSION['username'] ." 😁</h1></div>";
+            ?>
             <h1>Please Select Your Route</h1>
 
             <a href="stagestable.php" class="button" onclick="alert('Waiyaki Way Stages')">Waiyaki Way</button></a>

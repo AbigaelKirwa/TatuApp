@@ -23,14 +23,14 @@
             $_SESSION["username"]= $row['first_name'];
             $_SESSION["password"]= $row['password'];
             $_SESSION["client_id"]= $row['user_id'];
-            header("refresh:0; url= ../home.php");
+            header("refresh:0; url= ../booking.php");
             echo'<script>alert("Welcome back")</script>';
          }
       }
       else 
       {
-         header("refresh:0; url= ../login.php");
          echo'<script>alert("Incorrect credentials")</script>';
+         header("refresh:0; url= ../login.php");
       }
    }
 ?>
