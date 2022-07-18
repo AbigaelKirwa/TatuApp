@@ -47,7 +47,7 @@
                         <h1>Book a Bus with Us!</h1>
                     </div>
                     <div class="button-one">
-                        <input class="button" type="button" value="Let’s Book!">
+                        <a href="login.php"><input class="button" type="button" value="Let’s Book!"></a>
                     </div>  
                 </div>
             </div>
