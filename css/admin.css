@@ -178,7 +178,7 @@ a:hover
 }
 #insertbtn
 {
-  margin-left: 220px;
+  margin-left: 100px;
   margin-top: -5px;
   background-color: #E56C15;
   border: none;
@@ -188,3 +188,11 @@ form
   width: 0;
   height: 0;
 }
+select
+{
+  padding: 5px 10px 5px 10px;
+  background-color: #fff;
+  border: solid;
+  border-width: 1px;
+}
+

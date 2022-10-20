@@ -104,7 +104,7 @@ label ul {
 
  a {
     margin-bottom: 1em;
- label   display: block;
+    display: block;
     color: #E56C15;
     text-decoration: none;    
 }
@@ -125,6 +125,12 @@ h1
 {
     width: 100%;
     text-align: center;
+    margin-top: -80px;
+}
+.heading h1
+{
+    font-size: 80px;
+    color: #E56C15;
 }
 .row
 {
@@ -157,83 +163,68 @@ button.available
     font-weight: bold;
     border-radius: 70px;
 }
-.price
-{
-    width: 280px;
-    height: 50px;
-    background-color: #065757;
-    font-size: 15px;
-    font-weight: bold;
-    border-radius: 70px;
-    padding-top: 13px;
-    color: #FFF;
+#rcorners6 {
+    border-radius: 50px;
+    padding: 20px; 
+    width: 920px;
+    height: 200px;
 }
-.heading-2
-{
-    text-align: center;
-    margin-top: 70px;
+
+.container{
+    display: flex;
+    align-items: center;
 }
-#row-for-buses
-{
-    margin-left: -70px;
-}
-.col img
-{
-    width: 100px;
-}
-.bus-description
-{
-    margin-left: 15px;
-}
-footer
-{
+
+.item6{
+    position: absolute;
+    margin-left: 200px;
+    top: 230px;
     width: 100%;
-    height: 50vh;
-    background-color: #E56C15; 
-    display: flex;
-    flex-direction: row;
-    margin-top: 50px;
-}
-.footer-copyright img
+}  
+
+table
 {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    color: rgba(80,73,80,1);
-    width: 250px;
-    padding-top: 25%;
-    padding-left: 50%;
+  padding: 5px 5px 5px 5px;
+  border-radius: 20px;
+  border: solid;
+  border-width: 5px;
+  border-color: #065757;
 }
-.footer-links
+
+button a
 {
-    display: flex;
-    flex-direction: row;
-    width: 400px;
-    height: 30vh;
-    justify-content: space-between;
-    padding-left: 40%;
-    padding-top: 7%;
+  color: #fff;
 }
-.footer-links li b
+
+button a:hover
 {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    color: rgb(255, 255, 255);
+  color: black;
 }
-.footer-links li a
+
+#editbtn
 {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    color: rgb(255, 255, 255);
+ background-color: #065757;
+ border: none;
+ width: 120px;
 }
-.footer-links ul li
+.d-flex
 {
-    list-style: none;
+  width: 100%;
+
 }
-.footer-links ul li a
+.d-flex input
 {
-    text-decoration: none;
-    cursor: pointer;
+    width: 500px;
+    margin-left: 400px;
+    text-align: center;
+    color: #065757;
+    border: solid;
+}
+td
+{
+    border-top: none !important;
+}
+td input
+{
+    border: none !important;
 }

@@ -27,7 +27,7 @@
       else 
       {
          echo'<script>alert("Incorrect credentials")</script>';
-         header("location: ../admin_login.php");
+         header("refresh:0; url= ../admin_login.php");
       }
    }
 ?>

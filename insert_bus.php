@@ -1,11 +1,12 @@
 <?php
 require_once("queries/connect.php");
 include_once ("queries/admin_count.php");
+include_once ("queries/fetch.php");
 
 if (isset($_POST['insert_bus']))
 {
 
-    $sql= "INSERT INTO `bus`(bus_name,number_plate,route_id,bus_image,capacity) VALUES('".$_POST["bus_name"]."', '".$_POST["number_plate"]."','".$_POST["route_id"]."','".$_POST["bus_image"]."','".$_POST["capacity"]."')";
+    $sql= "INSERT INTO `bus`(bus_name,number_plate,route_id,route_name,bus_image,capacity) VALUES('".$_POST["bus_name"]."', '".$_POST["number_plate"]."','".$_POST["route_id"]."','".$_POST["route_name"]."','".$_POST["bus_image"]."','".$_POST["capacity"]."')";
     $result = $conn -> query($sql);
     if($result == TRUE){
     echo "Record inserted successfully";
@@ -50,27 +51,62 @@ if (isset($_POST['insert_bus']))
                 <a href="admin_booking.php">
                     <span class="glyphicon glyphicon-book" style="font-size:30px; color:white;"></span>
                 </a><br><br>
+                <a href="admin_bus.php">
+                    <span class="glyphicon glyphicon-bold" style="font-size:30px; color:white;"></span>
+                </a><br><br>
                 </p>
                 </div>
                 <div class="item2"><p id="rcorners2"></p></div>
                 <div class="item3"><p id="rcorners3">USERS<br><?php echo $usersrowcount; ?></p></div>
                 <div class="item4"><p id="rcorners4">BOOKING<br><?php echo $bookingrowcount; ?></p></div>
-                <div class="item5"><p id="rcorners5">PAYMENT<br><?php echo $paymentrowcount; ?></p></div>
+                <div class="item5"><p id="rcorners5">BUSES<br><?php echo $paymentrowcount; ?></p></div>
                 <div class="item6"><table id="rcorners6" class="table">
                     <form action="insert_bus.php" method = "POST" enctype="multipart/form-data">
                         <tr>
                             <th>bus name</th>
                             <th>number plate</th>
                             <th>route id</th>
+                            <th>route name</th>
                             <th>bus image</th>
                             <th>capacity</th>
                             <th>Insert</th>
                         </tr>
-                        <td><input type="text" name="bus_name" required="true" style="width:130px" ></td>
-                        <td><input type="text" name="number_plate"  required ="true" style="width:130px"></td>
-                        <td><input type="number" name="route_id" required="true" style="width:130px" min="1"></td>
+                        <td>
+                        <select class="form-select" aria-label="Default select example" name="bus_name" style="width:110px">
+                            <?php 
+                                foreach ($busname as $option) {
+                                    ?>
+                                    <option><?php echo $option['bus_name']; ?></option>
+                                    <?php 
+                                }
+                            ?>
+                        </select> 
+                        </td>
+                        <td><input type="text" name="number_plate"  required ="true" style="width:100px"></td>
+                        <td>
+                        <select class="form-select" aria-label="Default select example" name="route_id" style="width:50px">
+                            <?php 
+                                foreach ($routeid as $option) {
+                                    ?>
+                                    <option><?php echo $option['route_id']; ?></option>
+                                    <?php 
+                                }
+                            ?>
+                        </select>
+                        </td>
+                        <td>
+                        <select class="form-select" aria-label="Default select example" name="route_name" style="width:120px">
+                            <?php 
+                                foreach ($routename as $option) {
+                                    ?>
+                                    <option><?php echo $option['route_name']; ?></option>
+                                    <?php 
+                                }
+                            ?>
+                        </select>  
+                        </td>
                         <td><input type="text" name="bus_image" required="true" style="width:130px"></td>
-                        <td><input type="number" name="capacity" required="true" style="width:130px" min="1"></td>
+                        <td><input type="number" name="capacity" required="true" style="width:110px" min="1"></td>
                         <td><button class="btn btn-success" type="submit" name="insert_bus" value="save">Insert</button></td>
                     </form>
                 </div>

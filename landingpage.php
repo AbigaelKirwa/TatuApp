@@ -28,8 +28,9 @@
                             <span class="menu"> <span class="hamburger"></span> </span>
                             <ul>
                             <li> <a href="#">Home</a> </li>
-                            <li> <a href="#">About</a> </li>
-                            <li> <a href="#">Contact</a> </li>
+                            <li> <a href="signup.php">Sign up</a> </li>
+                            <li> <a href="login.php">Log in</a> </li>
+                            <li> <a href="home.php">Book</a> </li>
                             </ul>
                         </label>
                     </li>
@@ -51,7 +52,7 @@
                     </div>  
                 </div>
             </div>
-            <div class="page-2">
+            <div class="page-2" id="page-2">
                 <h1>About Us</h1>
                 <p>
                     Tatu App is a company that offers transport services to<br>

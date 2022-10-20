@@ -43,13 +43,15 @@ include_once ("queries/admin_count.php");
                 <div class="item2"><p id="rcorners2"></p></div>
                 <div class="item3"><p id="rcorners3">USERS<br><?php echo $usersrowcount; ?></p></div>
                 <div class="item4"><p id="rcorners4">BOOKING<br><?php echo $bookingrowcount; ?></p></div>
-                <div class="item5"><p id="rcorners5">PAYMENT<br><?php echo $paymentrowcount; ?></p></div>
+                <div class="item5"><p id="rcorners5">BUSES<br><?php echo $paymentrowcount; ?></p></div>
                 <div class="item6"><table id="rcorners6" class="table">
                     <tr>
                     <th scope="col">Booking Id</th>
-                    <th scope="col">Pickup Id</th>
-                    <th scope="col">Dropoff Id</th>
-                    <th scope="col">Bus Id</th>
+                    <th scope="col">Route name</th>
+                    <th scope="col">Pickup Stage</th>
+                    <th scope="col">Dropoff Stage</th>
+                    <th scope="col">Fare Amount</th>
+                    <th scope="col">Bus Name</th>
                     <th scope="col">User Id</th>
                     <th scope="col">Booking Time</th>
                     <th scope="col">Changes To Values</th>
@@ -60,11 +62,11 @@ include_once ("queries/admin_count.php");
                         else 
                         { $page_number = $_GET['page'];}  
                         
-                        $limit = 3;  
+                        $limit = 2;  
                         $initial_page = ($page_number-1) * $limit; 
 
 
-                        $sql_select = "SELECT  * FROM `booking`";
+                        $sql_select = "SELECT  * FROM `bookings`";
                         $results = $conn->query($sql_select);
                         $total_rows = mysqli_num_rows($results);
 
@@ -72,20 +74,22 @@ include_once ("queries/admin_count.php");
         
                         if($results -> num_rows > 0)
                         {
-                            $query = "SELECT *FROM `booking`LIMIT " . $initial_page . ',' . $limit;  
+                            $query = "SELECT *FROM `bookings`LIMIT " . $initial_page . ',' . $limit;  
                             $result = mysqli_query($conn, $query);  
                             while($row = mysqli_fetch_array($result)){
                                 ?>
                                <tr>
                                    <td><?php echo $row['booking_id']; ?></td>
-                                   <td><?php echo $row['pickup_stage_id']; ?></td>
-                                   <td><?php echo $row['dropoff_stage_id']; ?></td>
-                                   <td><?php echo $row['bus_id']; ?></td>
+                                   <td><?php echo $row['route_name']; ?></td>
+                                   <td><?php echo $row['pickup_stage']; ?></td>
+                                   <td><?php echo $row['dropoff_stage']; ?></td>
+                                   <td><?php echo $row['fare_amount']; ?></td>
+                                   <td><?php echo $row['bus_name']; ?></td>
                                    <td><?php echo $row['user_id']; ?></td>
                                    <td><?php echo $row['booking_time']; ?></td>
                                    <td>
-                                    <button type="button" class="btn btn-warning" id="editbtn">Update</button>
-                                    <button type="button" class="btn btn-danger"id ="deletebtn">Delete</button>
+                                        <button type="button" class="btn btn-warning" id="editbtn"><a name="update_booking" href="update_booking.php?id=<?php echo $row['booking_id']; ?>">Update</a></button>
+                                        <button type="button" class="btn btn-danger"id ="deletebtn"><a name="queries/delete_bus" href="queries/delete_booking.php?id=<?php echo $row['booking_id']; ?>">Delete</a></button>
                                     </td>
                                </tr>
                                <?php
@@ -100,7 +104,7 @@ include_once ("queries/admin_count.php");
                 
                     }  
                 ?>
-            
+            <button type="button" class="btn btn-success" id ="insertbtn"><a name="insert_route" href="insert_booking_admin.php?id=<?php echo $row['id']; ?>">Insert Booking</a></button>
             </div>
                 <div class="admin-image">
                     <img src="images/admin.png" alt="">

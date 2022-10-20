@@ -4,13 +4,17 @@ include_once ("queries/admin_count.php");
 
 if(isset($_POST['update_fare'])){
     $fare_id = $_POST['fare_id'];
+    $route_id = $_POST['route_id'];
+    $route_name= $_POST['route_name'];
     $pickup_id = $_POST['pickup_id'];
     $pickup_name= $_POST['pickup_name'];
     $dropoff_id = $_POST['dropoff_id'];
     $dropoff_name = $_POST['dropoff_name'];
     $fare_amount = $_POST['fare_amount'];
+    $bus_id = $_POST['bus_id'];
+    $bus_name = $_POST['bus_name'];
 
-    $sql =  "UPDATE `fare` SET `pickup_stage_id`='$pickup_id',`pickup_stage_name`='$pickup_name',`dropoff_stage_id`='$dropoff_id',`dropoff_stage_name`='$dropoff_name',`fare_amount`='$fare_amount' WHERE `fare_id`='$fare_id'";
+    $sql =  "UPDATE `fare` SET `route_id`='$route_id',`route_name`='$route_name',`pickup_stage_id`='$pickup_id',`pickup_stage_name`='$pickup_name',`dropoff_stage_id`='$dropoff_id',`dropoff_stage_name`='$dropoff_name',`fare_amount`='$fare_amount',`bus_id`='$bus_id', `bus_name`='$bus_name' WHERE `fare_id`='$fare_id'";
     $result = $conn -> query($sql);
     if($result == TRUE){
         echo '<script>alert("Record succesfully updated")</script>"';
@@ -27,11 +31,15 @@ if (isset($_GET['id'])){
     if($result -> num_rows > 0 ){
         while($row = $result -> fetch_assoc()){
             $fare_id = $row['fare_id'];
+            $route_id = $row['route_id'];
+            $route_name= $row['route_name'];
             $pickup_id = $row['pickup_stage_id'];
             $pickup_name= $row['pickup_stage_name'];
             $dropoff_id = $row['dropoff_stage_id'];
             $dropoff_name = $row['dropoff_stage_name'];
             $fare_amount = $row['fare_amount'];
+            $bus_id = $row['bus_id'];
+            $bus_name = $row['bus_name'];
         }
 ?>
 
@@ -72,25 +80,33 @@ if (isset($_GET['id'])){
                 <div class="item2"><p id="rcorners2"></p></div>
                 <div class="item3"><p id="rcorners3">USERS<br><?php echo $usersrowcount; ?></p></div>
                 <div class="item4"><p id="rcorners4">BOOKING<br><?php echo $bookingrowcount; ?></p></div>
-                <div class="item5"><p id="rcorners5">PAYMENT<br><?php echo $paymentrowcount; ?></p></div>
+                <div class="item5"><p id="rcorners5">BUSES<br><?php echo $paymentrowcount; ?></p></div>
                 <div class="item6"><table id="rcorners6" class="table">      
                 <form action="" method="post">
                         <tr>
                             <th>fare id</th>
+                            <th>route id</th>
+                            <th>route name</th>
                             <th>Pickup id</th>
                             <th>Pickup name</th>
                             <th>Dropoff id</th>
                             <th>Dropoff name</th>
-                            <th>fare_amount</th>
+                            <th>fare amount</th>
+                            <th>bus id</th>
+                            <th>bus name</th>
                             <th>update</th>
                         </tr>
                         <tbody>
-                            <td><input type="number" name="fare_id" min="1" value="<?php echo $fare_id;?>" style="width:100px"></td>
-                            <td><input type="number" name="pickup_id" min="1" value="<?php echo $pickup_id;?>" style="width:100px"></td>
-                            <td><input type="text" name="pickup_name" value="<?php echo $pickup_name;?>" style="width:100px"></td>
-                            <td><input type="number" name="dropoff_id" min="1" value="<?php echo $dropoff_id;?>" style="width:100px"></td>
-                            <td><input type="text" name="dropoff_name" value="<?php echo $dropoff_name;?>" style="width:100px"></td>
-                            <td><input type="number" name="fare_amount" min="1"value="<?php echo $fare_amount;?>" style="width:100px"></td>
+                            <td><input type="number" name="fare_id" min="1" value="<?php echo $fare_id;?>" style="width:50px"></td>
+                            <td><input type="number" name="route_id" min="1" value="<?php echo $route_id;?>" style="width:50px"></td>
+                            <td><input type="text" name="route_name" value="<?php echo $route_name;?>" style="width:90px"></td>
+                            <td><input type="number" name="pickup_id" min="1" value="<?php echo $pickup_id;?>" style="width:50px"></td>
+                            <td><input type="text" name="pickup_name" value="<?php echo $pickup_name;?>" style="width:70px"></td>
+                            <td><input type="number" name="dropoff_id" min="1" value="<?php echo $dropoff_id;?>" style="width:50px"></td>
+                            <td><input type="text" name="dropoff_name" value="<?php echo $dropoff_name;?>" style="width:70px"></td>
+                            <td><input type="number" name="fare_amount" min="1"value="<?php echo $fare_amount;?>" style="width:50px"></td>
+                            <td><input type="number" name="bus_id" min="1" value="<?php echo $bus_id;?>" style="width:50px"></td>
+                            <td><input type="text" name="bus_name" value="<?php echo $bus_name;?>" style="width:90px"></td>
                             <td><button class="btn btn-success" type="submit" name="update_fare">Update</button></td>
                         </tbody>
 

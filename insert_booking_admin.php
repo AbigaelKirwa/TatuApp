@@ -3,14 +3,14 @@ require_once("queries/connect.php");
 include_once ("queries/admin_count.php");
 include_once ("queries/fetch.php");
 
-if (isset($_POST['insert_fare']))
+if (isset($_POST['insert_booking']))
 {
 
-    $sql= "INSERT INTO fare(route_id,route_name,pickup_stage_id,pickup_stage_name,dropoff_stage_id,dropoff_stage_name,fare_amount,bus_id,bus_name) VALUES('".$_POST["route_id"]."','".$_POST["route_name"]."','".$_POST["pickup_id"]."', '".$_POST["pickup_name"]."', '".$_POST["dropoff_id"]."','".$_POST["dropoff_name"]."','".$_POST["fare_amount"]."','".$_POST["bus_id"]."','".$_POST["bus_name"]."')";
+    $sql= "INSERT INTO `bookings`(route_name,pickup_stage,dropoff_stage,fare_amount,bus_name,user_id) VALUES('".$_POST["route_name"]."', '".$_POST["pickup_stage"]."','".$_POST["dropoff_stage"]."','".$_POST["fare_amount"]."','".$_POST["bus_name"]."','".$_POST["user_id"]."')";
     $result = $conn -> query($sql);
     if($result == TRUE){
     echo "Record inserted successfully";
-    header("refresh:0; url= admin_fare.php");
+    header("refresh:0; url= admin_booking.php");
     }
     else
     {
@@ -61,29 +61,16 @@ if (isset($_POST['insert_fare']))
                 <div class="item4"><p id="rcorners4">BOOKING<br><?php echo $bookingrowcount; ?></p></div>
                 <div class="item5"><p id="rcorners5">BUSES<br><?php echo $paymentrowcount; ?></p></div>
                 <div class="item6"><table id="rcorners6" class="table">
-                    <form action="insert_fare.php" method = "POST" enctype="multipart/form-data">
+                    <form action="insert_booking_admin.php" method = "POST" enctype="multipart/form-data">
                         <tr>
-                            <th>Route id</th>
-                            <th>Route name</th>
-                            <th>Pickup id</th>
-                            <th>Pickup name</th>
-                            <th>Dropoff id</th>
-                            <th>Dropoff name</th>
+                            <th>route name</th>
+                            <th>pickup stage</th>
+                            <th>dropoff stage</th>
                             <th>fare amount</th>
-                            <th>bus id</th>
                             <th>bus name</th>
+                            <th>user id</th>
+                            <th>insert</th>
                         </tr>
-                        <td>
-                        <select class="form-select" aria-label="Default select example" name="route_id" style="width:50px">
-                            <?php 
-                                foreach ($routeid as $option) {
-                                    ?>
-                                    <option><?php echo $option['route_id']; ?></option>
-                                    <?php 
-                                }
-                            ?>
-                        </select>
-                        </td>
                         <td>
                         <select class="form-select" aria-label="Default select example" name="route_name" style="width:110px">
                             <?php 
@@ -96,18 +83,7 @@ if (isset($_POST['insert_fare']))
                         </select>  
                         </td>
                         <td>
-                        <select class="form-select" aria-label="Default select example" name="pickup_id" style="width:50px">
-                            <?php 
-                                foreach ($stageid as $option) {
-                                    ?>
-                                    <option><?php echo $option['stage_id']; ?></option>
-                                    <?php 
-                                }
-                            ?>
-                        </select>  
-                        </td>
-                        <td>
-                        <select class="form-select" aria-label="Default select example" name="pickup_name" style="width:100px">
+                        <select class="form-select" aria-label="Default select example" name="pickup_stage" style="width:100px">
                             <?php 
                                 foreach ($stagename as $option) {
                                     ?>
@@ -118,39 +94,17 @@ if (isset($_POST['insert_fare']))
                         </select>
                         </td>
                         <td>
-                    <select class="form-select" aria-label="Default select example" name="dropoff_id" style="width:50px">
-                        <?php 
-                            foreach ($stageid as $option) {
-                                ?>
-                                <option><?php echo $option['stage_id']; ?></option>
-                                <?php 
-                            }
-                        ?>
-                    </select>
-                        </td>
-                        <td>
-                        <select class="form-select" aria-label="Default select example" name="dropoff_name" style="width:100px">
+                        <select class="form-select" aria-label="Default select example" name="dropoff_stage" style="width:100px">
                             <?php 
                                 foreach ($stagename as $option) {
                                     ?>
                                     <option><?php echo $option['stage_name']; ?></option>
-                                    <?php 
-                                }
-                            ?>
-                        </select>
-                        </td>
-                        <td><input type="number" name="fare_amount" required ="true" style="width:60px" min="1"></td>
-                        <td>
-                        <select class="form-select" aria-label="Default select example" name="bus_id" style="width:50px">
-                            <?php 
-                                foreach ($busid as $option) {
-                                    ?>
-                                    <option><?php echo $option['bus_id']; ?></option>
                                     <?php 
                                 }
                             ?>
                         </select> 
                         </td>
+                        <td><input type="number" name="fare_amount" required="true" style="width:60px" min="1"></td>
                         <td>
                         <select class="form-select" aria-label="Default select example" name="bus_name" style="width:110px">
                             <?php 
@@ -160,9 +114,20 @@ if (isset($_POST['insert_fare']))
                                     <?php 
                                 }
                             ?>
-                        </select>    
+                        </select> 
                         </td>
-                        <td><button class="btn btn-success" type="submit" name="insert_fare" value="save">Insert</button></td>
+                        <td>
+                        <select class="form-select" aria-label="Default select example" name="user_id" style="width:50px">
+                            <?php 
+                                foreach ($userid as $option) {
+                                    ?>
+                                    <option><?php echo $option['user_id']; ?></option>
+                                    <?php 
+                                }
+                            ?>
+                        </select> 
+                        </td>
+                        <td><button class="btn btn-success" type="submit" name="insert_booking" value="save">Insert</button></td>
                     </form>
                 </div>
             </div>

@@ -43,7 +43,7 @@ include_once ("queries/admin_count.php");
                 <div class="item2"><p id="rcorners2"></p></div>
                 <div class="item3"><p id="rcorners3">USERS<br><?php echo $usersrowcount; ?></p></div>
                 <div class="item4"><p id="rcorners4">BOOKING<br><?php echo $bookingrowcount; ?></p></div>
-                <div class="item5"><p id="rcorners5">PAYMENT<br><?php echo $paymentrowcount; ?></p></div>
+                <div class="item5"><p id="rcorners5">BUSES<br><?php echo $paymentrowcount; ?></p></div>
                 <div class="item6"><table id="rcorners6" class="table">
                     <tr>
                     <th scope="col">Stage Id</th>   

@@ -43,15 +43,19 @@ include_once ("queries/admin_count.php");
                 <div class="item2"><p id="rcorners2"></p></div>
                 <div class="item3"><p id="rcorners3">USERS<br><?php echo $usersrowcount; ?></p></div>
                 <div class="item4"><p id="rcorners4">BOOKING<br><?php echo $bookingrowcount; ?></p></div>
-                <div class="item5"><p id="rcorners5">PAYMENT<br><?php echo $paymentrowcount; ?></p></div>
+                <div class="item5"><p id="rcorners5">BUSES<br><?php echo $paymentrowcount; ?></p></div>
                 <div class="item6"><table id="rcorners6" class="table">
                     <tr>
                     <th scope="col">Fare Id</th>   
+                    <th scope="col">Route Id</th>  
+                    <th scope="col">Route name</th>  
                     <th scope="col">Pickup Id</th>
                     <th scope="col">Pickup name</th>
                     <th scope="col">Dropoff Id</th>
                     <th scope="col">Dropoff name</th>
-                    <th scope="col">fare_amount</th>
+                    <th scope="col">fare amount</th>
+                    <th scope="col">Bus id</th>
+                    <th scope="col">Bus name</th>
                     <th scope="col">Changes To Values</th>
                     </tr>
                     <?php
@@ -60,7 +64,7 @@ include_once ("queries/admin_count.php");
                         else 
                         { $page_number = $_GET['page'];}  
                         
-                        $limit = 3;  
+                        $limit = 2;  
                         $initial_page = ($page_number-1) * $limit; 
 
 
@@ -78,11 +82,15 @@ include_once ("queries/admin_count.php");
                                 ?>
                                <tr>
                                    <td><?php echo $row['fare_id']; ?></td>
+                                   <td><?php echo $row['route_id']; ?></td>
+                                   <td><?php echo $row['route_name']; ?></td>
                                    <td><?php echo $row['pickup_stage_id']; ?></td>
                                    <td><?php echo $row['pickup_stage_name']; ?></td>
                                    <td><?php echo $row['dropoff_stage_id']; ?></td>
                                    <td><?php echo $row['dropoff_stage_name']; ?></td>
                                    <td><?php echo $row['fare_amount']; ?></td>
+                                   <td><?php echo $row['bus_id']; ?></td>
+                                   <td><?php echo $row['bus_name']; ?></td>
                                    <td>
                                         <button type="button" class="btn btn-warning" id="editbtn"><a name="update_fare" href="update_fare.php?id=<?php echo $row['fare_id']; ?>">Update</a></button>
                                         <button type="button" class="btn btn-danger"id ="deletebtn"><a name="queries/delete_fare" href="queries/delete_fare.php?id=<?php echo $row['fare_id']; ?>">Delete</a></button>

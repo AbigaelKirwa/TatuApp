@@ -43,15 +43,15 @@ include_once ("queries/admin_count.php");
                 <div class="item2"><p id="rcorners2"></p></div>
                 <div class="item3"><p id="rcorners3">USERS<br><?php echo $usersrowcount; ?></p></div>
                 <div class="item4"><p id="rcorners4">BOOKING<br><?php echo $bookingrowcount; ?></p></div>
-                <div class="item5"><p id="rcorners5">PAYMENT<br><?php echo $paymentrowcount; ?></p></div>
+                <div class="item5"><p id="rcorners5">BUSES<br><?php echo $paymentrowcount; ?></p></div>
                 <div class="item6"><table id="rcorners6" class="table">
                     <tr>
-                    <th scope="col">Payment Id</th>
-                    <th scope="col">Payment method</th>
-                    <th scope="col">Payment amount</th>
+                    <th scope="col">Mpesa Id</th>
                     <th scope="col">User Id</th>
-                    <th scope="col">Bus Id</th>
-                    <th scope="col">Changes To Values</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Phone number</th>
+                    <th scope="col">Time</th>
                     </tr>
                     <?php
                         if (!isset ($_GET['page']) ) 
@@ -63,7 +63,7 @@ include_once ("queries/admin_count.php");
                         $initial_page = ($page_number-1) * $limit; 
 
 
-                        $sql_select = "SELECT  * FROM `payment`";
+                        $sql_select = "SELECT  * FROM `mpesa`";
                         $results = $conn->query($sql_select);
                         $total_rows = mysqli_num_rows($results);
 
@@ -71,20 +71,17 @@ include_once ("queries/admin_count.php");
         
                         if($results -> num_rows > 0)
                         {
-                            $query = "SELECT *FROM `payment`LIMIT " . $initial_page . ',' . $limit;  
+                            $query = "SELECT *FROM `mpesa`LIMIT " . $initial_page . ',' . $limit;  
                             $result = mysqli_query($conn, $query);  
                             while($row = mysqli_fetch_array($result)){
                                 ?>
                                <tr>
-                                   <td><?php echo $row['payment_id']; ?></td>
-                                   <td><?php echo $row['payment_method']; ?></td>
-                                   <td><?php echo $row['payment_amount']; ?></td>
+                                   <td><?php echo $row['mpesa_id']; ?></td>
                                    <td><?php echo $row['user_id']; ?></td>
-                                   <td><?php echo $row['bus_id']; ?></td>
-                                   <td>
-                                    <button type="button" class="btn btn-warning" id="editbtn">Update</button>
-                                    <button type="button" class="btn btn-danger"id ="deletebtn">Delete</button>
-                                    </td>
+                                   <td><?php echo $row['username']; ?></td>
+                                   <td><?php echo $row['amount']; ?></td>
+                                   <td><?php echo $row['phone_no']; ?></td>
+                                   <td><?php echo $row['time']; ?></td>
                                </tr>
                                <?php
                             }

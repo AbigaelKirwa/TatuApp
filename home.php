@@ -1,13 +1,27 @@
+<!-- session starts here, also there is including of relevant files -->
 <?php
 session_start();
 include_once ("queries/connect.php");
-include_once ("queries/fetch_starting.php");
-include_once ("queries/fetch_destination.php");
 if (!isset($_SESSION['username']))
 {
     echo'<script>alert("Log in first")</script>';
     header("location: login.php");
 }
+
+if (isset($_POST['insert_booking']))
+{
+    // this code is what inserts data to bookings table from the input given below
+    $sql= "INSERT INTO `bookings`(pickup_stage,dropoff_stage,fare_amount,bus_name,user_id) VALUES('".$_POST["pickup_stage"]."', '".$_POST["dropoff_stage"]."', '".$_POST["fare_amount"]."', '".$_POST["bus_name"]."', '".$_SESSION["client_id"]."')";
+    $result = $conn -> query($sql);
+    if($result == TRUE){
+    header("refresh:0; url= https://morning-basin-87523.herokuapp.com");
+    }
+    else
+    {
+        echo "Error:" . $sql . "<br>" . $conn -> error;
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +32,7 @@ if (!isset($_SESSION['username']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/home.css?v=<?php echo time(); ?>">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>Home page</title>
 </head>
 <body>
@@ -31,108 +45,96 @@ if (!isset($_SESSION['username']))
         <span class="menu"> <span class="hamburger"></span> </span>
         <ul>
         <li> <a href="landingpage.php">Home</a> </li>
-        <li> <a href="#">About</a> </li>
-        <li> <a href="#">Contact</a> </li>
+        <li> <a href="#">Book</a> </li>
         <li> <a href="logout.php">Logout</a></li>
         </ul>
     </label>
-        <?php
-             echo "<div class='html_session'><h1>Welcome, " .$_SESSION['username'] ." 😁</h1></div>";
-        ?>
+
+<!-- this displays the session by displaying the users name -->
     <div class="heading">
+        <?php
+             echo "<div class='html_session'><h2>Welcome, " .$_SESSION['username'] ." 😁</h2></div>";
+        ?>
         <h1>Booking Details</h1>  
     </div>
-    <div class="row">
-        <div class="col-4">
-        <label for="start">start point</label>
-        <select class="form-select" aria-label="Default select example" name="stage_name">
-            <?php 
-                foreach ($options as $option) {
-                    ?>
-                    <option><?php echo $option['stage_name']; ?></option>
-                    <?php 
+
+<!-- this displays the search functionality it calls a function search place that is found at the bottom of this page -->
+    <div class="d-flex" role="search">
+        <input onkeyup="search_place()" class="form-control me-2" name="search" type="search" id="searchbar" placeholder="Search route" aria-label="Search">
+    </div>
+
+<!-- this table displays values from fares table-->
+    <div class="item6">
+        <table id="rcorners6" class="table">
+            <tr>
+            <th scope="col">route_name</th>  
+            <th scope="col">pickup stage </th>   
+            <th scope="col">drop off stage</th>
+            <th scope="col">fare amount</th>
+            <th scope="col">bus name</th>
+            <th scope="col">Book a bus now</th>
+            </tr>
+            <?php
+                $sql_select = "SELECT  * FROM `fare`";
+                $results = $conn->query($sql_select);
+                $total_rows = mysqli_num_rows($results);
+
+                if($results -> num_rows > 0)
+                {
+                    $query = "SELECT * FROM `fare`";  
+                    $result = mysqli_query($conn, $query);  
+                    while($row = mysqli_fetch_array($result)){
+                        ?>
+                        <tr>
+                            <td class="route_name" name="route_name"><?php echo $row['route_name']; ?></td>
+                            <td class="pickup" name="pickup_stage"><?php echo $row['pickup_stage_name']; ?></td>
+                            <td class="dropoff" name="dropoff_stage"><?php echo $row['dropoff_stage_name']; ?></td>
+                            <td class="fare" name="fare_amount"><?php echo $row['fare_amount']; ?></td>
+                            <td class="bus" name="bus_name"><?php echo $row['bus_name']; ?></td>
+                            <td>
+                            <!-- here I am redirecting to insert_booking.php-->
+                            <button type="button" class="btn btn-warning" id="editbtn"><a name="insert_booking" href="queries/insert_booking.php?id=<?php echo $row['fare_id']; ?>">Book</a></button>
+
+                            </td>
+                        </tr>
+                        <?php
+                    }
                 }
             ?>
-        </select>
-        </div>
-        <div class="col-4">
-        <label for="destination">destination point</label>
-        <select class="form-select" aria-label="Default select example" name="stage_name">
-            <?php 
-                foreach ($options as $option) {
-                    ?>
-                    <option><?php echo $option['stage_name']; ?></option>
-                    <?php 
+        </table>
+    </div>
+<!-- this script helps with displaying filtered values throught the search functionalities-->
+    <script>
+        function search_place() {
+            let input = document.getElementById('searchbar').value
+            input=input.toLowerCase();
+            let x = document.getElementsByClassName('dropoff');
+            let a = document.getElementsByClassName('pickup');
+            let b = document.getElementsByClassName('bus');
+            let c = document.getElementsByClassName('fare');
+            let d = document.getElementsByClassName('btn btn-warning');
+            let e = document.getElementsByClassName('route_name');
+            
+            
+            for (i = 0; i < x.length,a.lenght,b.length; i++) { 
+                if (!e[i].innerHTML.toLowerCase().includes(input)) {
+                    x[i].style.display="none";
+                    a[i].style.display="none";
+                    b[i].style.display="none";
+                    c[i].style.display="none";
+                    d[i].style.display="none";
+                    e[i].style.display="none";
                 }
-            ?>
-        </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-4">
-        <label for="price">fare</label>
-        <div class="price">ksh.80</div>
-        </div>
-        <div class="col-4">
-        <button class="available" type="submit">see available buses</button>
-        </div>
-    </div>
-    <div class="heading-2">
-        <h1>Available Buses</h1>  
-    </div>
-    <div class="row" id='row-for-buses'>
-        <div class="col">
-            <img src="images/orangebus2.png" alt="">
-            <p class="bus-description"><b>city bus</b></p>
-        </div>
-        <div class="col">
-            <img src="images/bluebus2.png" alt="">
-            <p class="bus-description"><b>latema</b></p>
-        </div>
-        <div class="col">
-            <img src="images/orangebus2.png" alt="">
-            <p class="bus-description"><b>shuttle</b></p>
-        </div>
-    </div>
-    <div class="row" id='row-for-buses'>
-        <div class="col">
-            <img src="images/orangebus2.png" alt="">
-            <p class="bus-description"><b>embassava</b></p>
-        </div>
-        <div class="col">
-            <img src="images/bluebus2.png" alt="">
-            <p class="bus-description"><b>s-metro</b></p>
-        </div>
-        <div class="col">
-            <img src="images/orangebus2.png" alt="">
-            <p class="bus-description"><b>express</b></p>
-        </div>
-    </div>
-    <footer>
-        <div class="footer-copyright">
-                <img src="images/footerbus.png" alt="">
-            </div>
-            <div class="footer-links">
-                <ul>
-                    <li><a href="#"><b>Updates</b></a></li>
-                    <li><a href="#">Schedule</a></li>
-                    <li><a href="#">Launches</a></li>
-                    <li><a href="#">Announcements</a></li>
-                </ul>
-                <ul>
-                    <li><a href="#"><b>Offers</b></a></li>
-                    <li><a href="#">Newsletter</a></li>
-                    <li><a href="#">Coupons</a></li>
-                    <li><a href="#">Free stuff</a></li>
-                </ul>
-                <ul>
-                    <li><a href="#"><b>Links</b></a></li>
-                    <li><a href="#">Blogs</a></li>
-                    <li><a href="#">Tools</a></li>
-                    <li ><a href="#">Tips</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+                else {
+                    x[i].style.display=""; 
+                    a[i].style.display="";
+                    b[i].style.display="";     
+                    c[i].style.display="";  
+                    d[i].style.display="";      
+                    e[i].style.display="";        
+                }
+            }
+        }
+    </script>
 </body>
 </html>

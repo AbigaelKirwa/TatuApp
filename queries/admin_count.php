@@ -9,7 +9,7 @@ if ($result = mysqli_query($conn, $sql)) {
     
 }
 
-$sql1 = "SELECT * from booking";
+$sql1 = "SELECT * from bookings";
 
 if ($result = mysqli_query($conn, $sql1)) {
 
@@ -17,7 +17,7 @@ if ($result = mysqli_query($conn, $sql1)) {
     
 }
 
-$sql1 = "SELECT * from payment";
+$sql1 = "SELECT * from bus";
 
 if ($result = mysqli_query($conn, $sql1)) {
 

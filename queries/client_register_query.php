@@ -24,13 +24,14 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
         
         if($conn -> query($sql_insert) === TRUE)
         {
-            echo '<script>alert("Succesful registration <br> <hl> WELCOME</h1>)</script>"';
+            echo '<script>alert("Succesful registration <br> <hl> WELCOME</h1>")</script>';
             header("Location: ../login.php");
         }
     }
-    else{
-        echo'<script>alert("Passwords did not match. Check to ensure the passwords Match")</script>';
-        header("Location: ../signup.php");
+    if($password !== $confirm_password){
+        echo '<script>alert("Passwords do not match")</script>';
+        
+        header("refresh:0;  url=../signup.php");
     }
     }
     if ($num > 0){

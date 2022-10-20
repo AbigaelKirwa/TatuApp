@@ -23,7 +23,7 @@
             $_SESSION["username"]= $row['first_name'];
             $_SESSION["password"]= $row['password'];
             $_SESSION["client_id"]= $row['user_id'];
-            header("refresh:0; url= ../booking.php");
+            header("refresh:0; url= ../home.php");
             echo'<script>alert("Welcome back")</script>';
          }
       }

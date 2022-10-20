@@ -43,13 +43,14 @@ include_once ("queries/admin_count.php");
                 <div class="item2"><p id="rcorners2"></p></div>
                 <div class="item3"><p id="rcorners3">USERS<br><?php echo $usersrowcount; ?></p></div>
                 <div class="item4"><p id="rcorners4">BOOKING<br><?php echo $bookingrowcount; ?></p></div>
-                <div class="item5"><p id="rcorners5">PAYMENT<br><?php echo $paymentrowcount; ?></p></div>
+                <div class="item5"><p id="rcorners5">BUSES<br><?php echo $paymentrowcount; ?></p></div>
                 <div class="item6"><table id="rcorners6" class="table">
                     <tr>
                     <th scope="col">Bus Id</th>   
                     <th scope="col">Bus name</th>
                     <th scope="col">Number plate</th>
                     <th scope="col">Route Id</th>
+                    <th scope="col">Route Name</th>
                     <th scope="col">Bus image</th>
                     <th scope="col">Capacity</th>
                     <th scope="col">Changes To Values</th>
@@ -60,7 +61,7 @@ include_once ("queries/admin_count.php");
                         else 
                         { $page_number = $_GET['page'];}  
                         
-                        $limit = 3;  
+                        $limit = 2;  
                         $initial_page = ($page_number-1) * $limit; 
 
 
@@ -81,11 +82,12 @@ include_once ("queries/admin_count.php");
                                    <td><?php echo $row['bus_name']; ?></td>
                                    <td><?php echo $row['number_plate']; ?></td>
                                    <td><?php echo $row['route_id']; ?></td>
+                                   <td><?php echo $row['route_name']; ?></td>
                                    <td><img src="<?php echo $row['bus_image']; ?>" style="margin-top:-20px;"></td>
                                    <td><?php echo $row['capacity']; ?></td>
                                    <td>
                                         <button type="button" class="btn btn-warning" id="editbtn"><a name="update_bus" href="update_bus.php?id=<?php echo $row['bus_id']; ?>">Update</a></button>
-                                        <button type="button" class="btn btn-danger"id ="deletebtn"><a name="queries/delete_bus" href="queries/delete_bus.php?id=<?php echo $row['route_id']; ?>">Delete</a></button>
+                                        <button type="button" class="btn btn-danger"id ="deletebtn"><a name="queries/delete_bus" href="queries/delete_bus.php?id=<?php echo $row['bus_id']; ?>">Delete</a></button>
                                     </td>
                                </tr>
                                <?php

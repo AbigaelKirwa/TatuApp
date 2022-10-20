@@ -7,11 +7,12 @@ if(isset($_POST['update_bus'])){
     $bus_name = $_POST['bus_name'];
     $number_plate= $_POST['number_plate'];
     $route_id= $_POST['route_id'];
+    $route_name= $_POST['route_name'];
     $bus_image= $_POST['bus_image'];
     $capacity= $_POST['capacity'];
 
 
-    $sql =  "UPDATE `bus` SET `bus_id`='$bus_id',`bus_name`='$bus_name',`number_plate`='$number_plate', `route_id`='$route_id',`bus_image`='$bus_image', `capacity`='$capacity' WHERE `bus_id`='$bus_id'";
+    $sql =  "UPDATE `bus` SET `bus_id`='$bus_id',`bus_name`='$bus_name',`number_plate`='$number_plate', `route_id`='$route_id',`route_name`='$route_name',`bus_image`='$bus_image', `capacity`='$capacity' WHERE `bus_id`='$bus_id'";
     $result = $conn -> query($sql);
     if($result == TRUE){
         echo '<script>alert("Record succesfully updated")</script>"';
@@ -31,6 +32,7 @@ if (isset($_GET['id'])){
             $bus_name = $row['bus_name'];
             $number_plate= $row['number_plate'];
             $route_id= $row['route_id'];
+            $route_name= $row['route_name'];
             $bus_image= $row['bus_image'];
             $capacity= $row['capacity'];
         }
@@ -68,12 +70,15 @@ if (isset($_GET['id'])){
                 <a href="admin_booking.php">
                     <span class="glyphicon glyphicon-book" style="font-size:30px; color:white;"></span>
                 </a><br><br>
+                <a href="admin_bus.php">
+                    <span class="glyphicon glyphicon-bold" style="font-size:30px; color:white;"></span>
+                </a><br><br>
                 </p>
                 </div>
                 <div class="item2"><p id="rcorners2"></p></div>
                 <div class="item3"><p id="rcorners3">USERS<br><?php echo $usersrowcount; ?></p></div>
                 <div class="item4"><p id="rcorners4">BOOKING<br><?php echo $bookingrowcount; ?></p></div>
-                <div class="item5"><p id="rcorners5">PAYMENT<br><?php echo $paymentrowcount; ?></p></div>
+                <div class="item5"><p id="rcorners5">BUSES<br><?php echo $paymentrowcount; ?></p></div>
                 <div class="item6"><table id="rcorners6" class="table">      
                 <form action="" method="post">
                         <tr>
@@ -81,6 +86,7 @@ if (isset($_GET['id'])){
                             <th>bus name</th>
                             <th>number plate</th>
                             <th>route id</th>
+                            <th>route name</th>
                             <th>bus image</th>
                             <th>capacity</th>
                             <th>update</th>
@@ -90,6 +96,7 @@ if (isset($_GET['id'])){
                         <td><input type="text" name="bus_name" value="<?php echo $bus_name;?>" style="width:100px"></td>
                         <td><input type="text" name="number_plate"  value="<?php echo $number_plate;?>" style="width:100px"></td>
                         <td><input type="number" name="route_id" value="<?php echo $route_id;?>" style="width:100px"></td>
+                        <td><input type="text" name="route_name" value="<?php echo $route_name;?>" style="width:100px"></td>
                         <td><input type="text" name="bus_image" value="<?php echo $bus_image;?>" style="width:100px"></td>
                         <td><input type="number" name="capacity" value="<?php echo $capacity;?>" style="width:100px"></td>
                             <td><button class="btn btn-success" type="submit" name="update_bus">Update</button></td>

@@ -1,6 +1,7 @@
 <?php
 require_once("queries/connect.php");
 include_once ("queries/admin_count.php");
+include_once ("queries/fetch.php");
 
 if (isset($_POST['insert_stage']))
 {
@@ -50,12 +51,15 @@ if (isset($_POST['insert_stage']))
                 <a href="admin_booking.php">
                     <span class="glyphicon glyphicon-book" style="font-size:30px; color:white;"></span>
                 </a><br><br>
+                <a href="admin_bus.php">
+                    <span class="glyphicon glyphicon-bold" style="font-size:30px; color:white;"></span>
+                </a><br><br>
                 </p>
                 </div>
                 <div class="item2"><p id="rcorners2"></p></div>
                 <div class="item3"><p id="rcorners3">USERS<br><?php echo $usersrowcount; ?></p></div>
                 <div class="item4"><p id="rcorners4">BOOKING<br><?php echo $bookingrowcount; ?></p></div>
-                <div class="item5"><p id="rcorners5">PAYMENT<br><?php echo $paymentrowcount; ?></p></div>
+                <div class="item5"><p id="rcorners5">BUSES<br><?php echo $paymentrowcount; ?></p></div>
                 <div class="item6"><table id="rcorners6" class="table">
                     <form action="insert_stage.php" method = "POST" enctype="multipart/form-data">
                         <tr>
@@ -67,8 +71,27 @@ if (isset($_POST['insert_stage']))
                         </tr>
                         <td><input type="text" name="stage_name" required="true" placeholder="Stage name"></td>
                         <td><input type="text" name="stage_number" id="stage_number" required ="true"></td>
-                        <td><input type="number" name="route_id" id="route_id" required ="true"></td>
-                        <td><input type="text" name="route_name" id="route_name" required ="true"></td>
+                        <td>
+                        <select class="form-select" aria-label="Default select example" name="route_id">
+                            <?php 
+                                foreach ($routeid as $option) {
+                                    ?>
+                                    <option><?php echo $option['route_id']; ?></option>
+                                    <?php 
+                                }
+                            ?>
+                        </select>
+                        <td>
+                        <select class="form-select" aria-label="Default select example" name="route_name">
+                            <?php 
+                                foreach ($routename as $option) {
+                                    ?>
+                                    <option><?php echo $option['route_name']; ?></option>
+                                    <?php 
+                                }
+                            ?>
+                        </select>
+                        </td>
                         <td><button class="btn btn-success" type="submit" name="insert_stage" value="save">Insert</button></td>
                     </form>
                 </div>
