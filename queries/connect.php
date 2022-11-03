@@ -3,7 +3,7 @@
 //$conn = new mysqli("localhost", "root", "", "matatudb",3307);
 
 //Get Heroku ClearDB connection information
-$cleardb_url = parse_url(getenv("mysql://b6797b4da26ff2:eeac73ee@us-cdbr-east-06.cleardb.net/heroku_febd03df904eabb?reconnect=true"));
+$cleardb_url = parse_url(getenv("localhost:3307"));
 $cleardb_server = $cleardb_url["us-cdbr-east-06.cleardb.net"];
 $cleardb_username = $cleardb_url["b6797b4da26ff2"];
 $cleardb_password = $cleardb_url["eeac73ee"];
