@@ -19,6 +19,6 @@ if($conn -> connect_error)
     die("Not connected".$conn -> connect_error);
 }
 //create database query
-$sql= "CREATE DATABASE matatudb";
+$sql= "CREATE DATABASE heroku_febd03df904eabb";
 $conn -> query($sql)
 ?>
